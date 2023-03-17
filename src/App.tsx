@@ -1,22 +1,20 @@
 import "./App.css";
-import DataTable, { Column } from "./components/Table";
-import { Department, Employee, State } from "../types";
+import { Department, State } from "../types";
 import { DataGrid } from "@mui/x-data-grid";
+import DataTable from "./components/Table";
 
 function App() {
-  const mockData: Employee[] = [
+  const mockData = [
     {
       firstName: "John",
       lastName: "Doe",
       startDate: new Date(),
       department: Department.ENG,
       birthDate: new Date(),
-      address: {
-        street: "streetname",
-        city: "Cheyenne",
-        state: State.WY,
-        zipCode: 99,
-      },
+      street: "streetname",
+      city: "Cheyenne",
+      state: State.WY,
+      zipCode: 99,
     },
     {
       firstName: "Jane",
@@ -24,70 +22,49 @@ function App() {
       startDate: new Date(),
       department: Department.LGL,
       birthDate: new Date(),
-      address: {
-        street: "blvdname",
-        city: "Green Bay",
-        state: State.WI,
-        zipCode: 92,
-      },
+
+      street: "blvdname",
+      city: "Green Bay",
+      state: State.WI,
+      zipCode: 92,
     },
   ];
 
-  const columns: Column<Employee>[] = [
+  const columns = [
     {
-      label: "First Name",
-      propertyName: "firstName",
-      renderer: (data) => data.firstName,
+      field: "firstName",
     },
     {
-      label: "Last Name",
-      propertyName: "lastName",
-      renderer: (data) => data.lastName,
+      field: "lastName",
     },
     {
-      label: "Start Date",
-      propertyName: "startDate",
-      renderer: (data) => data.startDate.toLocaleDateString(),
+      field: "startDate",
     },
     {
-      label: "Department",
-      propertyName: "department",
-      renderer: (data) => data.department,
+      field: "department",
     },
     {
-      label: "Date of Birth",
-      propertyName: "birthdate",
-      renderer: (data) => data.birthDate.toLocaleDateString(),
+      field: "birthDate",
     },
     {
-      label: "Street",
-      propertyName: "street",
-      renderer: (data) => data.address.street,
+      field: "street",
     },
     {
-      label: "City",
-      propertyName: "city",
-      renderer: (data) => data.address.city,
+      field: "city",
     },
     {
-      label: "State",
-      propertyName: "state",
-      renderer: (data) => data.address.state,
+      field: "state",
     },
     {
-      label: "Zip Code",
-      propertyName: "zip code",
-      renderer: (data) => data.address.zipCode,
+      field: "zipCode",
     },
   ];
 
   return (
     <div className="App">
-      <DataTable<Employee> columns={columns} data={mockData} />
-      <DataGrid
-        columns={[{ field: "name" }]}
-        rows={[{ id: "0", name: "foo" }]}
-      />
+      <div style={{ height: 250, width: "100%" }}>
+        <DataTable columns={columns} data={mockData} keyProperty="firstName" />
+      </div>
     </div>
   );
 }

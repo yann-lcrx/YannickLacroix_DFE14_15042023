@@ -1,46 +1,19 @@
-import Table from "@mui/material/Table";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableBody from "@mui/material/TableBody";
-import { ReactNode } from "react";
+import { DataGrid, GridColDef, GridValidRowModel } from "@mui/x-data-grid";
 
-function DataTable<T>({ data, columns }: Props<T>) {
+function DataTable({ data, columns, keyProperty }: Props) {
   return (
-    <Table stickyHeader>
-      <TableHead>
-        <TableRow>
-          {columns.map((column, index) => (
-            <TableCell key={`${column.propertyName}_${index}_header`}>
-              {column.label}
-            </TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data.map((datum, indexRow) => (
-          <TableRow key={indexRow}>
-            {columns.map(({ propertyName, renderer }, indexCol) => (
-              <TableCell key={`${propertyName}_${indexRow}_${indexCol}`}>
-                {renderer(datum)}
-              </TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <DataGrid
+      columns={columns}
+      rows={data}
+      getRowId={(row) => row[keyProperty]}
+    />
   );
 }
 
-export interface Column<T> {
-  label: string;
-  propertyName: string;
-  renderer: (data: T) => ReactNode;
-}
-
-interface Props<T> {
-  data: T[];
-  columns: Column<T>[];
+interface Props {
+  data: GridValidRowModel[];
+  columns: GridColDef[];
+  keyProperty: string;
 }
 
 export default DataTable;

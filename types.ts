@@ -1,15 +1,14 @@
 export interface Employee {
   firstName: string;
   lastName: string;
+  email: string;
   startDate: Date;
   department: Department;
   birthDate: Date;
-  address: {
-    street: string;
-    city: string;
-    state: State;
-    zipCode: number;
-  };
+  street: string;
+  city: string;
+  state: State;
+  zipCode: number;
 }
 
 export enum Department {

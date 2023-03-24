@@ -1,14 +1,21 @@
-import { DataGrid, GridColDef, GridValidRowModel } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridValidRowModel,
+  GridToolbar,
+} from "@mui/x-data-grid";
+import { FC } from "react";
 
-function DataTable({ data, columns, keyProperty }: Props) {
+const DataTable: FC<Props> = ({ data, columns, keyProperty }) => {
   return (
     <DataGrid
       columns={columns}
       rows={data}
       getRowId={(row) => row[keyProperty]}
+      slots={{ toolbar: GridToolbar }}
     />
   );
-}
+};
 
 interface Props {
   data: GridValidRowModel[];

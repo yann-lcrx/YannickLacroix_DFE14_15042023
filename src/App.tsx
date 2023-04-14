@@ -1,7 +1,7 @@
 import "./App.css";
 import { Department, State } from "../types";
-import { DataGrid } from "@mui/x-data-grid";
 import DataTable from "./components/Table";
+import { useModal, Modal } from "d2e-components";
 
 function App() {
   const mockData = [
@@ -60,10 +60,16 @@ function App() {
     },
   ];
 
+  const { toggle, isShowing } = useModal();
+
   return (
     <div className="App">
       <div style={{ height: 250, width: "100%" }}>
+        <button onClick={toggle}>Modale</button>
         <DataTable columns={columns} data={mockData} keyProperty="firstName" />
+        <Modal isShowing={isShowing} hide={toggle} label="Modal">
+          Fenêtre modale
+        </Modal>
       </div>
     </div>
   );

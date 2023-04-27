@@ -1,10 +1,11 @@
+import { Dayjs } from "dayjs";
+
 export interface Employee {
   firstName: string;
   lastName: string;
-  email: string;
-  startDate: Date;
+  startDate: Dayjs;
   department: Department;
-  birthDate: Date;
+  birthDate: Dayjs;
   street: string;
   city: string;
   state: State;

@@ -1,26 +1,42 @@
-import { FC, FormEvent, FormEventHandler, useState } from "react";
-import { Link } from "react-router-dom";
+import { FC, FormEvent, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import DateSelector from "../components/Datepicker";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import Combobox from "../components/Combobox";
 import { stateList } from "../utils/states";
 import { departmentList } from "../utils/departments";
+import { Modal, useModal } from "d2e-components";
+import EmployeesContext from "../contexts/employees";
 
 const Form: FC = () => {
-  const [startDate, setStartDate] = useState<Dayjs | null>(null);
-  const [birthDate, setBirthDate] = useState<Dayjs | null>(null);
+  const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
+  const [birthDate, setBirthDate] = useState<Dayjs>(dayjs(new Date()));
+
+  const { isShowing, toggle } = useModal();
+
+  const { employeesList, saveEmployees } = useContext(EmployeesContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event.currentTarget.firstName.value);
-    console.log(event.currentTarget.lastName.value);
-    console.log(birthDate);
-    console.log(startDate);
-    console.log(event.currentTarget.street.value);
-    console.log(event.currentTarget.city.value);
-    console.log(event.currentTarget.state.value);
-    console.log(event.currentTarget.zipCode.value);
-    console.log(event.currentTarget.department.value);
+
+    saveEmployees([
+      ...employeesList,
+      {
+        firstName: event.currentTarget.firstName.value,
+        lastName: event.currentTarget.lastName.value,
+        birthDate,
+        startDate,
+        street: event.currentTarget.street.value,
+        city: event.currentTarget.city.value,
+        state: event.currentTarget.state.value,
+        zipCode: event.currentTarget.zipCode.value,
+        department: event.currentTarget.department.value,
+      },
+    ]);
+
+    navigate("/employee-list");
   };
 
   return (
@@ -40,13 +56,21 @@ const Form: FC = () => {
         <DateSelector
           value={birthDate}
           label="Birth Date"
-          onChange={(value) => setBirthDate(value)}
+          onChange={(value) => {
+            if (value) {
+              setBirthDate(value);
+            }
+          }}
         />
 
         <DateSelector
           value={startDate}
           label="Start Date"
-          onChange={(value) => setStartDate(value)}
+          onChange={(value) => {
+            if (value) {
+              setStartDate(value);
+            }
+          }}
         />
 
         <fieldset>
@@ -69,6 +93,12 @@ const Form: FC = () => {
         <Combobox options={departmentList} id="department" name="department" />
 
         <button type="submit">Save</button>
+
+        <button onClick={toggle}>Activer la modale</button>
+
+        <Modal hide={toggle} isShowing={isShowing} label="sample">
+          It works
+        </Modal>
       </form>
     </>
   );

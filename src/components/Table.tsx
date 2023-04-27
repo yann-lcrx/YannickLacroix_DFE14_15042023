@@ -9,6 +9,7 @@ import { FC } from "react";
 const DataTable: FC<Props> = ({ data, columns, keyProperty }) => {
   return (
     <DataGrid
+      autoHeight
       columns={columns}
       rows={data}
       getRowId={(row) => row[keyProperty]}

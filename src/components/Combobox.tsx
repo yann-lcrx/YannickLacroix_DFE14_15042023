@@ -10,6 +10,7 @@ function Combobox({ options, id, name, label }: ComboboxProps) {
         label={label}
         select
         required
+        style={{ width: "226px" }}
       >
         {options.map((option) => (
           <MenuItem value={option} key={option}>

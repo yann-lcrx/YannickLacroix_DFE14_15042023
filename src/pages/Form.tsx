@@ -8,6 +8,7 @@ import { departmentList } from "../utils/departments";
 import { Modal, useModal } from "d2e-components";
 import EmployeesContext from "../contexts/employees";
 import styles from "../styles/Form.module.css";
+import Input from "../components/Input";
 
 const Form: FC = () => {
   const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
@@ -46,11 +47,9 @@ const Form: FC = () => {
       <h2>Create Employee</h2>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="first-name">First Name</label>
-        <input name="firstName" id="first-name" required />
+        <Input name="firstName" label="First name" />
 
-        <label htmlFor="last-name">Last Name</label>
-        <input name="lastName" id="last-name" required />
+        <Input name="lastName" label="Last name" />
 
         <DateSelector
           value={birthDate}
@@ -75,16 +74,13 @@ const Form: FC = () => {
         <fieldset>
           <legend>Address</legend>
 
-          <label htmlFor="street">Street</label>
-          <input name="street" id="street" required />
+          <Input name="street" label="Street" />
 
-          <label htmlFor="city">City</label>
-          <input name="city" id="city" required />
+          <Input name="city" label="City" />
 
           <Combobox options={stateList} id="state" name="state" label="State" />
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input name="zipCode" id="zip-code" required type="number" />
+          <Input name="zipCode" label="Zip code" type="number" />
         </fieldset>
 
         <Combobox

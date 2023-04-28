@@ -5,3 +5,7 @@
   align-items: center;
   gap: calc(var(--magic-unit));
 }
+
+.form Form {
+  max-width: 500px;
+}

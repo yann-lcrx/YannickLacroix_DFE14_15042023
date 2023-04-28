@@ -1,5 +1,5 @@
 import { FC, FormEvent, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DateSelector from "../components/Datepicker";
 import dayjs, { Dayjs } from "dayjs";
 import Combobox from "../components/Combobox";
@@ -15,8 +15,6 @@ const Form: FC = () => {
   const { isShowing, toggle } = useModal();
 
   const { employeesList, saveEmployees } = useContext(EmployeesContext);
-
-  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +34,7 @@ const Form: FC = () => {
       },
     ]);
 
-    navigate("/employee-list");
+    toggle();
   };
 
   return (
@@ -94,10 +92,8 @@ const Form: FC = () => {
 
         <button type="submit">Save</button>
 
-        <button onClick={toggle}>Activer la modale</button>
-
         <Modal hide={toggle} isShowing={isShowing} label="sample">
-          It works
+          Employee created!
         </Modal>
       </form>
     </>

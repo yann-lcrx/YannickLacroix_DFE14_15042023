@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import AppRouter from "./router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Employee } from "../types";

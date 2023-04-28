@@ -1,0 +1,7 @@
+.Form form,
+.Form fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--magic-unit));
+}

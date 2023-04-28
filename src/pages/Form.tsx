@@ -7,6 +7,7 @@ import { stateList } from "../utils/states";
 import { departmentList } from "../utils/departments";
 import { Modal, useModal } from "d2e-components";
 import EmployeesContext from "../contexts/employees";
+import styles from "../styles/Form.module.css";
 
 const Form: FC = () => {
   const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
@@ -38,7 +39,7 @@ const Form: FC = () => {
   };
 
   return (
-    <>
+    <div className={styles.Form}>
       <h1>HRnet</h1>
       <Link to="employee-list">View Current Employees</Link>
 
@@ -80,15 +81,18 @@ const Form: FC = () => {
           <label htmlFor="city">City</label>
           <input name="city" id="city" required />
 
-          <label htmlFor="state">State</label>
-          <Combobox options={stateList} id="state" name="state" />
+          <Combobox options={stateList} id="state" name="state" label="State" />
 
           <label htmlFor="zip-code">Zip Code</label>
           <input name="zipCode" id="zip-code" required type="number" />
         </fieldset>
 
-        <label htmlFor="department">Department</label>
-        <Combobox options={departmentList} id="department" name="department" />
+        <Combobox
+          options={departmentList}
+          id="department"
+          name="department"
+          label="Department"
+        />
 
         <button type="submit">Save</button>
 
@@ -96,7 +100,7 @@ const Form: FC = () => {
           Employee created!
         </Modal>
       </form>
-    </>
+    </div>
   );
 };
 

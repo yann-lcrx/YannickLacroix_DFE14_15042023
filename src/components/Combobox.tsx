@@ -1,22 +1,28 @@
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, SelectProps, TextField } from "@mui/material";
 
-function Combobox({ options, id, name }: ComboboxProps) {
+function Combobox({ options, id, name, label }: ComboboxProps) {
   return (
-    <Select id={id} name={name} defaultValue={options[0]} required>
-      {options.map((option) => (
-        <MenuItem value={option} key={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </Select>
+    <>
+      <TextField
+        id={id}
+        name={name}
+        defaultValue={options[0]}
+        label={label}
+        select
+        required
+      >
+        {options.map((option) => (
+          <MenuItem value={option} key={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+    </>
   );
 }
 
-interface ComboboxProps {
-  name: string;
-  id: string;
+interface ComboboxProps extends SelectProps {
   options: string[];
-  handleChange?: (value: string) => void;
 }
 
 export default Combobox;

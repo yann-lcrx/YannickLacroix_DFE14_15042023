@@ -10,3 +10,14 @@
   width: 280px;
   text-align: center;
 }
+
+.Form h1,
+.Form h2 {
+  color: var(--color-primary);
+}
+
+.Form a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-secondary);
+}

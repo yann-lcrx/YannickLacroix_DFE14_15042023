@@ -2,9 +2,12 @@
 
 #root {
   max-width: 1280px;
+  width: fit-content;
+  border-radius: 16px;
   margin: 0 auto;
-  padding: 2rem;
   display: flex;
   justify-content: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #fff;
+  padding: calc(2 * (var(--magic-unit))) calc(4 * (var(--magic-unit)));
 }

@@ -28,3 +28,22 @@
   line-height: 20px;
   font-size: 0.85rem;
 }
+
+.Form button {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.Form button:hover {
+  background-color: var(--color-secondary);
+  color: #000;
+}
+
+.Form button[type="submit"] {
+  width: 150px;
+  border: 0px;
+  border-radius: 24px;
+  font-weight: 600;
+  padding: var(--magic-unit);
+  cursor: pointer;
+}

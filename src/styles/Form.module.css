@@ -6,6 +6,7 @@
   gap: calc(2 * var(--magic-unit));
 }
 
-.form Form {
-  max-width: 500px;
+.Form {
+  width: 280px;
+  text-align: center;
 }

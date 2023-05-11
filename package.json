@@ -13,7 +13,7 @@
     "@mui/material": "^5.11.13",
     "@mui/x-data-grid": "^6.0.2",
     "@mui/x-date-pickers": "^6.0.2",
-    "d2e-components": "^0.2.6",
+    "d2e-components": "^0.2.8",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -3,3 +3,7 @@
   --color-primary: #121777;
   --color-secondary: #6688ff;
 }
+
+p {
+  margin: 0;
+}

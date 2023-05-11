@@ -1,15 +1,22 @@
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 
-function DateSelector({ value, label, onChange }: DateSelectorProps) {
-  const currentDate = dayjs().startOf("day");
-
+function DateSelector({
+  value,
+  label,
+  onChange,
+  maxDate,
+  minDate,
+  onError,
+}: DateSelectorProps) {
   return (
     <DatePicker
       value={value}
       onChange={onChange}
       label={label}
-      maxDate={currentDate}
+      maxDate={maxDate}
+      minDate={minDate}
+      onError={onError}
     />
   );
 }

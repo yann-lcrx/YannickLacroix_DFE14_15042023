@@ -9,10 +9,14 @@ import { Modal, useModal } from "d2e-components";
 import EmployeesContext from "../contexts/employees";
 import styles from "../styles/Form.module.css";
 import Input from "../components/Input";
+import { DateValidationError } from "@mui/x-date-pickers";
 
 const Form: FC = () => {
+  const currentDate = dayjs().startOf("day");
+
   const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
   const [birthDate, setBirthDate] = useState<Dayjs>(dayjs(new Date()));
+  const [error, setError] = useState<DateValidationError | null>(null);
 
   const { isShowing, toggle } = useModal();
 
@@ -39,6 +43,12 @@ const Form: FC = () => {
     toggle();
   };
 
+  const getErrorMessage = (error: DateValidationError) => {
+    if (error === "maxDate") {
+      return "Please select a date prior to tomorrow";
+    }
+  };
+
   return (
     <div className={styles.Form}>
       <h1>HRnet</h1>
@@ -51,15 +61,25 @@ const Form: FC = () => {
 
         <Input name="lastName" label="Last name" />
 
-        <DateSelector
-          value={birthDate}
-          label="Birth Date"
-          onChange={(value) => {
-            if (value) {
-              setBirthDate(value);
-            }
-          }}
-        />
+        <div className={styles.dateContainer}>
+          <DateSelector
+            value={birthDate}
+            label="Birth Date"
+            onChange={(value) => {
+              if (value) {
+                setBirthDate(value);
+              }
+            }}
+            maxDate={currentDate}
+            onError={(error) => {
+              setError(error);
+              console.log(error);
+            }}
+          />
+          <p className={styles.errorMessage}>
+            {error ? getErrorMessage(error) : null}
+          </p>
+        </div>
 
         <DateSelector
           value={startDate}

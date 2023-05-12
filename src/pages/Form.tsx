@@ -46,7 +46,7 @@ const Form: FC = () => {
   };
 
   return (
-    <div className={styles.Form}>
+    <main className={styles.Form}>
       <h1>HRnet</h1>
       <Link to="employee-list">View Current Employees</Link>
 
@@ -116,7 +116,7 @@ const Form: FC = () => {
           Employee created!
         </Modal>
       </form>
-    </div>
+    </main>
   );
 };
 

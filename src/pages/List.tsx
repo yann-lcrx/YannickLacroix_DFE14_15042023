@@ -19,7 +19,13 @@ const List: FC = () => {
   ];
 
   return (
-    <DataTable data={employeesList} columns={columns} keyProperty="lastName" />
+    <main>
+      <DataTable
+        data={employeesList}
+        columns={columns}
+        keyProperty="lastName"
+      />
+    </main>
   );
 };
 

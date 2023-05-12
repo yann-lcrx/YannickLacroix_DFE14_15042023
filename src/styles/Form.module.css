@@ -22,21 +22,14 @@
   color: var(--color-secondary);
 }
 
-.Form .errorMessage {
-  color: crimson;
-  height: 20px;
-  line-height: 20px;
-  font-size: 0.85rem;
-}
-
 .Form button {
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-fresh-white);
 }
 
 .Form button:hover {
   background-color: var(--color-secondary);
-  color: #000;
+  color: var(--color-primary);
 }
 
 .Form button[type="submit"] {
@@ -46,4 +39,10 @@
   font-weight: 600;
   padding: var(--magic-unit);
   cursor: pointer;
+}
+
+.Form button[type="submit"]:disabled {
+  background-color: var(--color-tertiary-lt);
+  color: var(--color-tertiary);
+  cursor: unset;
 }

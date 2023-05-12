@@ -1,6 +1,6 @@
 import { FC, FormEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import DateSelector from "../components/Datepicker";
+import DateSelector, { DateError } from "../components/Datepicker";
 import dayjs, { Dayjs } from "dayjs";
 import Combobox from "../components/Combobox";
 import { stateList } from "../utils/states";
@@ -9,14 +9,14 @@ import { Modal, useModal } from "d2e-components";
 import EmployeesContext from "../contexts/employees";
 import styles from "../styles/Form.module.css";
 import Input from "../components/Input";
-import { DateValidationError } from "@mui/x-date-pickers";
 
 const Form: FC = () => {
   const currentDate = dayjs().startOf("day");
 
   const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
   const [birthDate, setBirthDate] = useState<Dayjs>(dayjs(new Date()));
-  const [error, setError] = useState<DateValidationError | null>(null);
+  const [birthDateError, setBirthDateError] = useState<DateError | null>(null);
+  const [startDateError, setStartDateError] = useState<DateError | null>(null);
 
   const { isShowing, toggle } = useModal();
 
@@ -25,27 +25,23 @@ const Form: FC = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    saveEmployees([
-      ...employeesList,
-      {
-        firstName: event.currentTarget.firstName.value,
-        lastName: event.currentTarget.lastName.value,
-        birthDate,
-        startDate,
-        street: event.currentTarget.street.value,
-        city: event.currentTarget.city.value,
-        state: event.currentTarget.state.value,
-        zipCode: event.currentTarget.zipCode.value,
-        department: event.currentTarget.department.value,
-      },
-    ]);
+    if (birthDate.isValid() && startDate.isValid()) {
+      saveEmployees([
+        ...employeesList,
+        {
+          firstName: event.currentTarget.firstName.value,
+          lastName: event.currentTarget.lastName.value,
+          birthDate,
+          startDate,
+          street: event.currentTarget.street.value,
+          city: event.currentTarget.city.value,
+          state: event.currentTarget.state.value,
+          zipCode: event.currentTarget.zipCode.value,
+          department: event.currentTarget.department.value,
+        },
+      ]);
 
-    toggle();
-  };
-
-  const getErrorMessage = (error: DateValidationError) => {
-    if (error === "maxDate") {
-      return "Please select a date prior to tomorrow";
+      toggle();
     }
   };
 
@@ -72,13 +68,10 @@ const Form: FC = () => {
             }}
             maxDate={currentDate}
             onError={(error) => {
-              setError(error);
-              console.log(error);
+              setBirthDateError(error);
             }}
+            error={birthDateError}
           />
-          <p className={styles.errorMessage}>
-            {error ? getErrorMessage(error) : null}
-          </p>
         </div>
 
         <DateSelector
@@ -89,6 +82,11 @@ const Form: FC = () => {
               setStartDate(value);
             }
           }}
+          minDate={birthDate}
+          onError={(error) => {
+            setStartDateError(error);
+          }}
+          error={startDateError}
         />
 
         <fieldset>
@@ -110,7 +108,9 @@ const Form: FC = () => {
           label="Department"
         />
 
-        <button type="submit">Save</button>
+        <button type="submit" disabled={!!startDateError || !!birthDateError}>
+          Save
+        </button>
 
         <Modal hide={toggle} isShowing={isShowing} label="sample">
           Employee created!

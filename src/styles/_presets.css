@@ -1,7 +1,17 @@
 :root {
   --magic-unit: 8px;
+
   --color-primary: #121777;
   --color-secondary: #6688ff;
+  --color-tertiary: #555555;
+  --color-tertiary-lt: #cccccc;
+  --color-error: crimson;
+
+  --color-card-bg: var(--color-fresh-white);
+
+  --color-pitch-black: #000;
+  --color-fresh-white: #fff;
+
   background-color: #ddddde;
 }
 

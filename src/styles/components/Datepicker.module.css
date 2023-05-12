@@ -1,0 +1,5 @@
+.Datepicker p {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  height: 16px;
+}

@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #fff;
+  font-size: 14px;
+  background-color: var(--color-card-bg);
   padding: calc(2 * (var(--magic-unit))) calc(4 * (var(--magic-unit)));
 }

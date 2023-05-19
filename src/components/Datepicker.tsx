@@ -3,6 +3,7 @@ import { DateValidationError } from "@mui/x-date-pickers";
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { Dayjs } from "dayjs";
 import styles from "../styles/components/Datepicker.module.css";
+import { useEffect } from "react";
 
 function DateSelector({
   value,
@@ -13,17 +14,17 @@ function DateSelector({
   onError,
   error,
 }: DateSelectorProps) {
-  const getErrorMessage = (error: DateError) => {
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+
+  const getErrorMessage = (error: DateValidationError) => {
     if (error === "maxDate") {
       return "Please select an earlier date";
     }
 
     if (error === "minDate") {
       return "Please select a later date";
-    }
-
-    if (error === "incompleteDate") {
-      return "Please enter a complete date (MM-DD-YYYY)";
     }
   };
 
@@ -49,9 +50,7 @@ function DateSelector({
 }
 
 type DateSelectorProps = DatePickerProps<Dayjs> & {
-  error?: DateError;
+  error?: DateValidationError;
 };
-
-export type DateError = DateValidationError | "incompleteDate";
 
 export default DateSelector;

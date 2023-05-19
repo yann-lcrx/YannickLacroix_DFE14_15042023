@@ -1,6 +1,6 @@
 import { FC, FormEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import DateSelector, { DateError } from "../components/Datepicker";
+import DateSelector from "../components/Datepicker";
 import dayjs, { Dayjs } from "dayjs";
 import Combobox from "../components/Combobox";
 import { stateList } from "../utils/states";
@@ -9,14 +9,17 @@ import { Modal, useModal } from "d2e-components";
 import EmployeesContext from "../contexts/employees";
 import styles from "../styles/Form.module.css";
 import Input from "../components/Input";
+import { DateValidationError } from "@mui/x-date-pickers";
 
 const Form: FC = () => {
   const currentDate = dayjs().startOf("day");
 
   const [startDate, setStartDate] = useState<Dayjs>(dayjs(new Date()));
   const [birthDate, setBirthDate] = useState<Dayjs>(dayjs(new Date()));
-  const [birthDateError, setBirthDateError] = useState<DateError | null>(null);
-  const [startDateError, setStartDateError] = useState<DateError | null>(null);
+  const [birthDateError, setBirthDateError] =
+    useState<DateValidationError | null>(null);
+  const [startDateError, setStartDateError] =
+    useState<DateValidationError | null>(null);
 
   const { isShowing, toggle } = useModal();
 

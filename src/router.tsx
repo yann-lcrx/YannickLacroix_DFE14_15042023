@@ -1,14 +1,18 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Form from "./pages/Form";
-import List from "./pages/List";
+import { Suspense, lazy } from "react";
+
+const Form = lazy(() => import("./pages/Form"));
+const List = lazy(() => import("./pages/List"));
 
 function AppRouter() {
   return (
-    <Routes>
-      <Route path="/" element={<Form />} />
-      <Route path="/employee-list" element={<List />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Form />} />
+        <Route path="/employee-list" element={<List />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Suspense>
   );
 }
 

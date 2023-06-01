@@ -1,4 +1,6 @@
-import { MenuItem, SelectProps, TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { SelectProps } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 function Combobox({ options, id, name, label }: ComboboxProps) {
   return (

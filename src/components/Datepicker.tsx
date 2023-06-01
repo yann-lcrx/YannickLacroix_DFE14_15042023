@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import { DateValidationError } from "@mui/x-date-pickers";
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { Dayjs } from "dayjs";

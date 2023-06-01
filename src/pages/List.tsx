@@ -20,6 +20,8 @@ const List: FC = () => {
 
   return (
     <main>
+      <h1>Current employees</h1>
+
       <DataTable
         data={employeesList}
         columns={columns}

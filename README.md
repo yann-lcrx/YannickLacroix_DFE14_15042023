@@ -6,13 +6,20 @@ Welcome to HRnet! This is our company's internal application to create and view 
 
 - NodeJS v16
 
+## Stack
+
+- React
+- React Router
+- TypeScript
+- CSS Modules
+
 ## Setting up the project
 
 1. Clone the project using `git clone`
 
 2. Install dependencies by running `npm i`
 
-## Developing a new feature
+## Contributing to the project
 
 - Use `npm run dev` to run a development server
 
